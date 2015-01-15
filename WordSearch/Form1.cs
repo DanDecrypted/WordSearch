@@ -13,10 +13,11 @@ namespace WordSearch
     public partial class Form1 : Form
     {
         private List<string> m_WordsToFind;
+        private List<string> m_WordsFound;
         private int m_PreviousSelection;
         private int m_GridSize;
         private bool m_GridBuilt;
-        private List<string> m_WordsFound;
+        
         public Form1()
         {
             InitializeComponent();
@@ -72,7 +73,8 @@ namespace WordSearch
                     wordGrid.Columns.Add("x" + i.ToString(), "x" + i.ToString());
                 }
                 wordGrid.Rows.Add(m_GridSize - 1);
-
+                
+                //Insert words randomly
                 Random rndNumber = new Random();
                 foreach (string word in m_WordsToFind)
                 {
@@ -85,7 +87,8 @@ namespace WordSearch
                         wordInserted = InsertWord(direction, word, xStart, yStart, true);
                     }
                 }
-
+                
+                //Fill in the blanks
                 for (int x = 0; x < m_GridSize; x++)
                 {
                     for (int y = 0; y < m_GridSize; y++)
